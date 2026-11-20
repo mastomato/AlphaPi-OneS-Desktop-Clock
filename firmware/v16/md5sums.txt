@@ -1,9 +1,11 @@
 # AlphaPi One S 六段刷机包 v16 —— 文件校验清单
 # 格式：md5  文件名        校验：python flash_all.py --check-only
 # v16 变化：radio.bin 换成 M2b 日期色版（原版见 extras/radio-v15-原版回滚.bin）
+# 2026-11-20 就地更新：xiaozhi.bin 换成统一深色+卡死修复+配网共享+三合一页+WiFi历史/会话恢复版
+#   （原 v14 镜像见 extras/xiaozhi-v16原版回滚.bin，md5 f9415214806b15e247a19b263b5e8ca9）
 ebaf808bf6e0c3475d26392aad00603f *bootloader.bin
 4fad1f9e5bdedad713be681825c1f2a9 *partition-table.bin
 84d04c9d6cc8ef35bf825d51a5277699 *ota_data_initial.bin
-f9415214806b15e247a19b263b5e8ca9 *xiaozhi.bin
+e71295325b3aa8e18c79961291b01e72 *xiaozhi.bin
 027fb3ee01891b9818100a44ad773ce2 *radio.bin
 c23298d3f2ec5a67022336ba07be9a80 *generated_assets.bin

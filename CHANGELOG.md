@@ -8,6 +8,24 @@
 
 ---
 
+## v16 增补 · xiaozhi.bin 就地更新（2026-11-20）
+
+按用户要求不新建版本号，直接在 v16 包内替换 `xiaozhi.bin`（原版存入 `extras/xiaozhi-v16原版回滚.bin`）。
+其余五段（bootloader / 分区表 / otadata / radio / assets）不变，无 radio.bin 改动，不影响 M2b 配色。
+
+- **新 `xiaozhi.bin`**：2,138,544 B，md5 `e71295325b3aa8e18c79961291b01e72`，
+  `esptool image_info` = `Checksum 0x43 valid` / `Validation hash valid`。
+- **修复白底界面**：资源包 `index.json` 的 `skin.light` 是白底黑字，设备默认 light 主题，
+  v14 只锁了 dark。`lcd_display.cc::SetTheme()` 现将 light/dark 两主题都锁成 `#0E1420` 深底，
+  开机首帧也改为深色（RGB565 `0x08A4`）。
+- **修复卡顿**：v16 原镜像编译于卡死修复之前，本版含 `lv_refr_now` 重入移除、12 个 label 文本缓存、
+  时钟构建独立任务。
+- **配网只配一次**：`SsidManager::SaveToNvs()` 保存时把默认 SSID/密码同步写入收音机的
+  NVS namespace `alphapi_radio`，切槽后收音机直接联网。
+- **三合一设置页**：配网 / 天气位置 / 网络收音机合并为单页，配网在最上。
+- **WiFi 历史记录与会话失败恢复**：`ssid_manager.cc` / `application.cc` 的断流恢复改动。
+- 已刷 v16 的设备升级只需单刷 `0x20000` 的 `xiaozhi.bin`；NVS 配网与收音机槽不动。
+
 ## v16 · M2b 日期色收音机并入整包（2026-11-12）
 
 - **唯一变化的镜像是 `radio.bin`**（2,398,544 B，md5 `027fb3ee01891b9818100a44ad773ce2`），

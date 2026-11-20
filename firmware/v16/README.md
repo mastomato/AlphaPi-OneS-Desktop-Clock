@@ -3,6 +3,14 @@
 一次写入 6 个镜像：`ota_0` = 小智 + **自定义深色时钟页/中文天气**，`ota_1` = **M2b 日期色网络收音机**。
 两块固件靠 `otadata` 切换，D 长按互切。打包日期 2026-11-12。
 
+> **2026-11-20 就地更新（仅 `xiaozhi.bin`）**：小智镜像已替换为新版（2,138,544 B，
+> md5 `e71295325b3aa8e18c79961291b01e72`），修复了「刷 v16 后界面白底 + 卡顿」，并新增
+> 三合一设置页、配网一次共享给收音机、WiFi 历史记录与会话失败恢复。其余五段不变。
+> **从设备上只刷一段即可**：
+> `python -m esptool --chip esp32s2 -p COMx -b 115200 --before default-reset --after hard-reset write_flash 0x20000 xiaozhi.bin`
+> 想回到原来的 v14 小智镜像，把 `extras/xiaozhi-v16原版回滚.bin` 重刷到 `0x20000` 即可（md5 `f9415214…`）。
+> 下方正文描述的 v16 是 11-12 打包时的状态；小智段以本节为准，收音机段与刷机地址不变。
+
 > **从 v15 升级只需写一段（收音机）**，小智、otadata、nvs、assets 全不动，Wi-Fi 与天气设置不丢：
 > `python -m esptool --chip esp32s2 -p COMx -b 115200 --before no_reset --after no_reset write_flash 0x310000 radio.bin`
 > 回滚：把文件名换成 `extras/radio-v15-原版回滚.bin` 重刷同一地址即可，逐字节还原。
