@@ -16,6 +16,46 @@
 | 输入 | 4 键（A / B / C / D），长按 D 切换小智 / 收音机 |
 | Flash | 8 MB，双 OTA 槽（0x20000 / 0x310000） |
 
+## 界面预览
+
+所有界面按 160×128 实机像素绘制（放大展示）。屏幕截图源文件在 [docs/screens/](docs/screens/)。
+
+### 小智槽（ota_0）
+
+**桌面时钟页** — 深色 `#0E1420`，左「日期 / 大字时间 / 城市」+ 右「天气图标 / 温度 / 天气」，
+底部三天预报（今 / 明 / 后）：
+
+| 已配置天气（v11 B 版定稿） | 未配置天气位置（显示 IP + 设置提示） |
+|---|---|
+| ![首页时钟](docs/screens/01-home-clock.png) | ![未配置天气](docs/screens/02-home-no-weather.png) |
+
+**小智对话** — 待机 / 唤醒聆听 / 对话气泡三态（同一套深色主题）：
+
+![小智三态](docs/screens/08-xiaozhi-idle-listen-chat.png)
+
+### 收音机槽（ota_1）— M2b 日期色版（v16 新配色）
+
+| 播放中 · LIVE | 缓冲中 · WAIT | 已暂停 · STOP |
+|---|---|---|
+| ![播放](docs/screens/03-radio-live.png) | ![缓冲](docs/screens/04-radio-wait.png) | ![暂停](docs/screens/05-radio-stop.png) |
+
+| 静音 · MUTE | 电台列表 | v15 原配色对照 |
+|---|---|---|
+| ![静音](docs/screens/06-radio-mute.png) | ![电台列表](docs/screens/07-radio-station-list.png) | [配色总览](firmware/v16/extras/M2b日期色版-预览总览.png) |
+
+四个按键块与电台名用日期色 `#7186A0`，LIVE / 电台图标等暖色为播报色 `#FFD27A`，
+频谱高条 / 选中行用青 `#8FE3F0` —— 即 v16 相对 v15 的唯一变化。
+
+### 开发中的统一设置页（⚠️ 不属于 v16）
+
+下图是配网 + 天气合并为单页的「统一设置页」预览，STA / AP 两种网络模式下看到的是同一页面。
+**该页面属于 v16 之后的开发版本，未包含在 v16 发布的固件里**（该版本因音频断流问题未发布，
+设备当前可用版本仍是 v16 的独立配网页 + 天气设置页）。放在这里仅供预览功能设计方向：
+
+![统一设置页 STA/AP 两态](docs/screens/09-web-settings-dev.png)
+
+原始预览稿（含逐项说明与坐标参数）：[docs/统一设置页预览-20261112.html](docs/统一设置页预览-20261112.html)。
+
 ## 最新发布
 
 **[v16 · 2026-11-12](firmware/v16/README.md)** — M2b 日期色收音机并入整包

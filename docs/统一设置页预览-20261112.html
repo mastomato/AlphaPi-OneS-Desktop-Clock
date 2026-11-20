@@ -1,0 +1,93 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>AlphaPi One S 统一设置页预览</title>
+<style>
+.pane{font-family:system-ui,-apple-system,"Microsoft YaHei",sans-serif;background:#0E1420;color:#E6EEF7;margin:0 auto;padding:18px;max-width:520px}
+h1{font-size:20px;color:#8FE3F0;margin:0 0 4px}
+h2{font-size:16px;color:#FFD27A;margin:0 0 8px}
+.small{color:#7186A0;font-size:13px;line-height:1.7}
+.card{background:#16203A;border-radius:12px;padding:16px;margin:14px 0}
+label{display:block;margin:12px 0 5px;font-size:14px}
+input,select{width:100%;box-sizing:border-box;padding:9px;border:1px solid #34465F;border-radius:8px;background:#0E1420;color:#E6EEF7;font-size:15px}
+button,.btn{display:inline-block;margin-top:16px;padding:10px 18px;border:0;border-radius:8px;background:#8FE3F0;color:#0E1420;font-size:15px;font-weight:600;cursor:pointer;text-decoration:none}
+.btn2{background:#243352;color:#8FE3F0;margin-left:8px;margin-top:10px}
+code{color:#FFD27A}.err{color:#FF9A8B}.ok{color:#9BE59B}
+.aps{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.ap{padding:6px 10px;border:1px solid #34465F;border-radius:7px;background:#0E1420;color:#B8C4D6;font-size:13px;cursor:pointer}
+.ap:hover{border-color:#8FE3F0;color:#8FE3F0}
+.pill{display:inline-block;padding:2px 8px;border-radius:6px;background:#243352;color:#8FE3F0;font-size:12px}
+
+.page{background:#070c16;color:#E6EEF7;font-family:system-ui,-apple-system,"Microsoft YaHei",sans-serif;padding:18px}
+h3{font-size:15px;color:#FFD27A;margin:0 0 10px;font-weight:600}
+.wrap{display:flex;gap:20px;align-items:flex-start}
+.col{width:520px;flex:none}
+.pane{border:1px solid #243352;border-radius:14px;overflow:hidden}
+.banner{color:#7186A0;font-size:13px;line-height:1.7;margin-bottom:14px}
+
+.notes{max-width:1060px;margin:28px 0 10px;color:#B8C4D6;font-size:13px;line-height:1.75}
+.notes h2{font-size:15px;color:#8FE3F0;margin:0 0 10px}
+.notes .card{margin:12px 0}
+.notes p{margin:8px 0}
+.notes b{color:#E6EEF7}
+.notes pre{background:#0E1420;border:1px solid #34465F;border-radius:8px;padding:10px;
+ white-space:pre-wrap;word-break:break-all;color:#FFD27A;font-size:12px;margin:8px 0}
+</style></head><body class="page">
+<div class="banner">AlphaPi One S · 统一设置页（与固件同源的 CSS / 结构）　配网在最上面，天气在下面；两种网络模式看到的是同一个页面</div>
+<div class="wrap">
+<div class="col"><h3>① 已联网（STA）· 访问 http://192.168.1.23/</h3><div class="pane">
+<h1>AlphaPi One S 设置</h1>
+<div class="small">Wi-Fi 配网 · 天气位置 —— 全部在这一个页面，设置保存在设备上，重启后仍然生效</div>
+<div class="card"><h2>① Wi-Fi 配网</h2><div class="small"><span class="pill">已联网</span> 当前网络 <b>HomeWiFi_2.4G</b><br>设备地址 <code>http://192.168.1.23/</code> · 配网模式地址 <code>http://192.168.4.1/</code></div><div class="small" style="margin-top:10px">附近网络（点击填入 SSID）</div><div class="aps">正在扫描…</div><form method="post" action="/wifi/save"><label>Wi-Fi 名称 SSID</label><input name="ssid" maxlength="32" required placeholder="选择上方网络或手动输入"><label>密码（开放网络留空）</label><input name="password" type="password" maxlength="64" autocomplete="new-password"><button type="submit">保存并连接</button></form><a class="btn btn2" href="/wifi/mode?enter=1">进入配网模式（开热点）</a></div><div class="card"><h2>② 天气位置设置</h2><p>当前位置：<b>福州</b> &nbsp; 纬度 26.0745 / 经度 119.2965</p><div class="small">当前天气：TEMP 21C PTCLDY</div></div><div class="card"><form method="post" action="/save"><label>选择城市</label><select name="city" onchange="pick(this)"><option value="0" data-lat="39.9042" data-lon="116.4074" data-name="北京">北京</option><option value="1" data-lat="31.2304" data-lon="121.4737" data-name="上海">上海</option><option value="2" data-lat="23.1291" data-lon="113.2644" data-name="广州">广州</option><option value="3" data-lat="22.5431" data-lon="114.0579" data-name="深圳">深圳</option><option value="4" data-lat="30.2741" data-lon="120.1551" data-name="杭州">杭州</option><option value="5" data-lat="32.0603" data-lon="118.7969" data-name="南京">南京</option><option value="6" data-lat="30.5728" data-lon="104.0668" data-name="成都">成都</option><option value="7" data-lat="29.5630" data-lon="106.5516" data-name="重庆">重庆</option><option value="8" data-lat="30.5928" data-lon="114.3055" data-name="武汉">武汉</option><option value="9" data-lat="34.3416" data-lon="108.9398" data-name="西安">西安</option><option value="10" data-lat="31.2989" data-lon="120.5853" data-name="苏州">苏州</option><option value="11" data-lat="39.3434" data-lon="117.3616" data-name="天津">天津</option><option value="12" data-lat="28.2282" data-lon="112.9388" data-name="长沙">长沙</option><option value="13" data-lat="34.7466" data-lon="113.6254" data-name="郑州">郑州</option><option value="14" data-lat="36.0671" data-lon="120.3826" data-name="青岛">青岛</option><option value="15" data-lat="38.9140" data-lon="121.6147" data-name="大连">大连</option><option value="16" data-lat="24.4798" data-lon="118.0894" data-name="厦门">厦门</option><option value="17" data-lat="26.0745" data-lon="119.2965" data-name="福州" selected>福州</option><option value="18" data-lat="25.0389" data-lon="102.7183" data-name="昆明">昆明</option><option value="19" data-lat="26.6470" data-lon="106.6302" data-name="贵阳">贵阳</option><option value="20" data-lat="22.8170" data-lon="108.3665" data-name="南宁">南宁</option><option value="21" data-lat="20.0444" data-lon="110.1999" data-name="海口">海口</option><option value="22" data-lat="31.8206" data-lon="117.2272" data-name="合肥">合肥</option><option value="23" data-lat="36.6512" data-lon="117.1201" data-name="济南">济南</option><option value="24" data-lat="45.8038" data-lon="126.5349" data-name="哈尔滨">哈尔滨</option><option value="25" data-lat="43.8171" data-lon="125.3235" data-name="长春">长春</option><option value="26" data-lat="41.8057" data-lon="123.4315" data-name="沈阳">沈阳</option><option value="27" data-lat="38.0428" data-lon="114.5149" data-name="石家庄">石家庄</option><option value="28" data-lat="37.8706" data-lon="112.5489" data-name="太原">太原</option><option value="29" data-lat="40.8414" data-lon="111.7519" data-name="呼和浩特">呼和浩特</option><option value="30" data-lat="43.8256" data-lon="87.6168" data-name="乌鲁木齐">乌鲁木齐</option><option value="31" data-lat="36.0611" data-lon="103.8343" data-name="兰州">兰州</option><option value="32" data-lat="36.6171" data-lon="101.7782" data-name="西宁">西宁</option><option value="33" data-lat="38.4872" data-lon="106.2309" data-name="银川">银川</option><option value="34" data-lat="29.6525" data-lon="91.1721" data-name="拉萨">拉萨</option><option value="35" data-lat="28.6820" data-lon="115.8579" data-name="南昌">南昌</option><option value="36" data-lat="31.4912" data-lon="120.3119" data-name="无锡">无锡</option><option value="37" data-lat="29.8683" data-lon="121.5440" data-name="宁波">宁波</option><option value="38" data-lat="27.9938" data-lon="120.6994" data-name="温州">温州</option><option value="39" data-lat="23.0218" data-lon="113.1219" data-name="佛山">佛山</option><option value="40" data-lat="23.0207" data-lon="113.7518" data-name="东莞">东莞</option><option value="41" data-lat="22.2710" data-lon="113.5767" data-name="珠海">珠海</option><option value="42" data-lat="24.8741" data-lon="118.6757" data-name="泉州">泉州</option><option value="43" data-lat="25.2736" data-lon="110.2994" data-name="桂林">桂林</option><option value="44" data-lat="34.6197" data-lon="112.4539" data-name="洛阳">洛阳</option><option value="45" data-lat="34.2058" data-lon="117.2848" data-name="徐州">徐州</option><option value="46" data-lat="37.4638" data-lon="121.4479" data-name="烟台">烟台</option><option value="-1">自定义（填下面经纬度）</option></select><label>纬度 latitude (-90 ~ 90)</label><input name="lat" value="26.0745"><label>经度 longitude (-180 ~ 180)</label><input name="lon" value="119.2965"><label>屏幕显示名称（建议用列表内城市，字库只含常用汉字）</label><input name="label" maxlength="24" value="福州"><button type="submit">保存并立即刷新天气</button></form><a class="btn btn2" href="/geo">按公网 IP 自动定位</a></div><div class="small">
+<p><b>配网说明</b>：正常联网时直接在本页改 Wi-Fi；进配网模式后，手机/电脑连上设备热点，
+浏览器打开 <code>http://192.168.4.1/</code>，看到的仍是本页。
+也可以在设备上长按 A 键 3 秒进 / 出配网模式。</p>
+<p><b>天气说明</b>：保存位置后会立即重新拉取天气，不需要重启；屏幕右上角的
+IP 提示会自动消失。以后忘了设备 IP，可点下面按钮让屏幕临时再显示 60 秒：<br>
+<a class="btn btn2" href="/showip">在屏幕上重新显示 IP</a></p>
+<p>数据源 open-meteo.com（免密钥）；「按公网 IP 自动定位」用 ip-api.com，
+国内网络可能不可用，失败时手动选城市即可。</p>
+</div></div></div>
+<div class="col"><h3>② 配网模式（AP）· 访问 http://192.168.4.1/</h3><div class="pane">
+<h1>AlphaPi One S 设置</h1>
+<div class="small">Wi-Fi 配网 · 天气位置 —— 全部在这一个页面，设置保存在设备上，重启后仍然生效</div>
+<div class="card ok">Wi-Fi 已保存，正在重新连接；连上后用新地址打开本页。</div><div class="card"><h2>① Wi-Fi 配网</h2><div class="small"><span class="pill">配网模式</span> 设备热点 <b>AlphaPi-4A2B</b><br>配网地址 <code>http://192.168.4.1/</code> —— 你正在看的这个页面</div><div class="small" style="margin-top:10px">附近网络（点击填入 SSID）</div><div class="aps">正在扫描…</div><form method="post" action="/wifi/save"><label>Wi-Fi 名称 SSID</label><input name="ssid" maxlength="32" required placeholder="选择上方网络或手动输入"><label>密码（开放网络留空）</label><input name="password" type="password" maxlength="64" autocomplete="new-password"><button type="submit">保存并连接</button></form><a class="btn btn2" href="/wifi/mode?enter=0">退出配网模式并重新联网</a></div><div class="card"><h2>② 天气位置设置</h2><p>当前位置：<b>福州</b> &nbsp; 纬度 26.0745 / 经度 119.2965</p><div class="small">当前天气：TEMP 21C PTCLDY</div></div><div class="card"><form method="post" action="/save"><label>选择城市</label><select name="city" onchange="pick(this)"><option value="0" data-lat="39.9042" data-lon="116.4074" data-name="北京">北京</option><option value="1" data-lat="31.2304" data-lon="121.4737" data-name="上海">上海</option><option value="2" data-lat="23.1291" data-lon="113.2644" data-name="广州">广州</option><option value="3" data-lat="22.5431" data-lon="114.0579" data-name="深圳">深圳</option><option value="4" data-lat="30.2741" data-lon="120.1551" data-name="杭州">杭州</option><option value="5" data-lat="32.0603" data-lon="118.7969" data-name="南京">南京</option><option value="6" data-lat="30.5728" data-lon="104.0668" data-name="成都">成都</option><option value="7" data-lat="29.5630" data-lon="106.5516" data-name="重庆">重庆</option><option value="8" data-lat="30.5928" data-lon="114.3055" data-name="武汉">武汉</option><option value="9" data-lat="34.3416" data-lon="108.9398" data-name="西安">西安</option><option value="10" data-lat="31.2989" data-lon="120.5853" data-name="苏州">苏州</option><option value="11" data-lat="39.3434" data-lon="117.3616" data-name="天津">天津</option><option value="12" data-lat="28.2282" data-lon="112.9388" data-name="长沙">长沙</option><option value="13" data-lat="34.7466" data-lon="113.6254" data-name="郑州">郑州</option><option value="14" data-lat="36.0671" data-lon="120.3826" data-name="青岛">青岛</option><option value="15" data-lat="38.9140" data-lon="121.6147" data-name="大连">大连</option><option value="16" data-lat="24.4798" data-lon="118.0894" data-name="厦门">厦门</option><option value="17" data-lat="26.0745" data-lon="119.2965" data-name="福州" selected>福州</option><option value="18" data-lat="25.0389" data-lon="102.7183" data-name="昆明">昆明</option><option value="19" data-lat="26.6470" data-lon="106.6302" data-name="贵阳">贵阳</option><option value="20" data-lat="22.8170" data-lon="108.3665" data-name="南宁">南宁</option><option value="21" data-lat="20.0444" data-lon="110.1999" data-name="海口">海口</option><option value="22" data-lat="31.8206" data-lon="117.2272" data-name="合肥">合肥</option><option value="23" data-lat="36.6512" data-lon="117.1201" data-name="济南">济南</option><option value="24" data-lat="45.8038" data-lon="126.5349" data-name="哈尔滨">哈尔滨</option><option value="25" data-lat="43.8171" data-lon="125.3235" data-name="长春">长春</option><option value="26" data-lat="41.8057" data-lon="123.4315" data-name="沈阳">沈阳</option><option value="27" data-lat="38.0428" data-lon="114.5149" data-name="石家庄">石家庄</option><option value="28" data-lat="37.8706" data-lon="112.5489" data-name="太原">太原</option><option value="29" data-lat="40.8414" data-lon="111.7519" data-name="呼和浩特">呼和浩特</option><option value="30" data-lat="43.8256" data-lon="87.6168" data-name="乌鲁木齐">乌鲁木齐</option><option value="31" data-lat="36.0611" data-lon="103.8343" data-name="兰州">兰州</option><option value="32" data-lat="36.6171" data-lon="101.7782" data-name="西宁">西宁</option><option value="33" data-lat="38.4872" data-lon="106.2309" data-name="银川">银川</option><option value="34" data-lat="29.6525" data-lon="91.1721" data-name="拉萨">拉萨</option><option value="35" data-lat="28.6820" data-lon="115.8579" data-name="南昌">南昌</option><option value="36" data-lat="31.4912" data-lon="120.3119" data-name="无锡">无锡</option><option value="37" data-lat="29.8683" data-lon="121.5440" data-name="宁波">宁波</option><option value="38" data-lat="27.9938" data-lon="120.6994" data-name="温州">温州</option><option value="39" data-lat="23.0218" data-lon="113.1219" data-name="佛山">佛山</option><option value="40" data-lat="23.0207" data-lon="113.7518" data-name="东莞">东莞</option><option value="41" data-lat="22.2710" data-lon="113.5767" data-name="珠海">珠海</option><option value="42" data-lat="24.8741" data-lon="118.6757" data-name="泉州">泉州</option><option value="43" data-lat="25.2736" data-lon="110.2994" data-name="桂林">桂林</option><option value="44" data-lat="34.6197" data-lon="112.4539" data-name="洛阳">洛阳</option><option value="45" data-lat="34.2058" data-lon="117.2848" data-name="徐州">徐州</option><option value="46" data-lat="37.4638" data-lon="121.4479" data-name="烟台">烟台</option><option value="-1">自定义（填下面经纬度）</option></select><label>纬度 latitude (-90 ~ 90)</label><input name="lat" value="26.0745"><label>经度 longitude (-180 ~ 180)</label><input name="lon" value="119.2965"><label>屏幕显示名称（建议用列表内城市，字库只含常用汉字）</label><input name="label" maxlength="24" value="福州"><button type="submit">保存并立即刷新天气</button></form><a class="btn btn2" href="/geo">按公网 IP 自动定位</a></div><div class="small">
+<p><b>配网说明</b>：正常联网时直接在本页改 Wi-Fi；进配网模式后，手机/电脑连上设备热点，
+浏览器打开 <code>http://192.168.4.1/</code>，看到的仍是本页。
+也可以在设备上长按 A 键 3 秒进 / 出配网模式。</p>
+<p><b>天气说明</b>：保存位置后会立即重新拉取天气，不需要重启；屏幕右上角的
+IP 提示会自动消失。以后忘了设备 IP，可点下面按钮让屏幕临时再显示 60 秒：<br>
+<a class="btn btn2" href="/showip">在屏幕上重新显示 IP</a></p>
+<p>数据源 open-meteo.com（免密钥）；「按公网 IP 自动定位」用 ip-api.com，
+国内网络可能不可用，失败时手动选城市即可。</p>
+</div></div></div>
+</div>
+<div class="notes">
+<h2>改动说明（本次固件）</h2>
+<div class="card"><h2>① 卡死：查到 4 个确定性隐患，全部修掉</h2><div class="small">
+<p><b>1 · LVGL 刷新重入（最可能的真凶）</b>：v13 排查状态栏色差时，在 LVGL timer 回调里加了 <code>lv_refr_now(nullptr)</code>；真因 v14 已经查明是 assets 里 <code>skin.dark</code> 的 <code>#1f2937</code> 覆盖主题色，这行早就没有作用。它会在 timer handler 内重入显示刷新，与 esp_lvgl_port 的 flush / mutex 撞车时死锁；LVGL 锁一旦不释放，Application 主循环每秒的 <code>UpdateStatusBar()</code> 就一直等锁（DisplayLockGuard 最长 30 s），整机表现为「用一段时间有概率卡死」。<b>已删除，只保留 invalidate。</b></p>
+<p><b>2 · 每秒无谓重写</b>：<code>UpdateText()</code> 原来无条件重设 12 个 label 文本、11 个对象显隐 flag，还做 3 次 <code>lv_obj_update_layout()</code>。<code>lv_label_set_text</code> 即使文本相同也会重新分配并复制字符串、把对象标脏；ESP32-S2 没有 PSRAM，长期运行后 LVGL 堆碎片化，最终分配失败 / 刷新卡住。<b>已加文本缓存，只在内容真的变化时写 LVGL。</b></p>
+<p><b>3 · esp_timer 任务栈只有 3584 B</b>：SNTP 初始化和建 UI（40+ LVGL 对象 + 4 组矢量图标）原来都跑在 <code>ESP_TIMER_TASK</code> 回调里，还要等 LVGL 锁。栈溢出会静默踩坏内存、之后随机发作；一旦阻塞则所有软件定时器停摆。<b>已改成独立 4096 B FreeRTOS 任务。</b></p>
+<p><b>4 · 两个 httpd 抢 80 端口</b>：天气设置页和配网 AP 页各起一个 80 端口 server，进 / 出配网时抢占结果不确定，<code>ESP_ERROR_CHECK(httpd_start)</code> 失败还会直接 abort。<b>已合并为唯一 server（见下）。</b></p>
+</div></div>
+<div class="card"><h2>② 统一设置页：一个页面、一个 httpd</h2><div class="small">
+<p>天气 httpd 改为开机 3 秒起、绑 <code>0.0.0.0:80</code>，不再等 STA 拿到 IP，因此 STA 与 AP 两种模式都能访问；配网 AP 只保留热点 / DNS / 周期扫描，不再启动第二套 web server（组件里 <code>StartWebServer()</code> 一处注释）。页面最上面是 Wi-Fi 配网，下面才是天气位置设置。</p>
+<p>新增路由：<code>GET /wifi/scan</code>（扫描结果 JSON）、<code>POST /wifi/save</code>（存凭据并重连）、<code>GET /wifi/mode?enter=0|1</code>（进 / 出配网模式）、<code>GET /*</code>（captive portal 兜底跳回本页）。原有 <code>/save</code>、<code>/geo</code>、<code>/showip</code> 全部保留。</p>
+<p><b>行为变化，请留意</b>：官方配网 SPA 的「多 SSID 管理 / 高级设置」不再通过网页提供，换成本页的「扫描列表 + 填 SSID / 密码」。首次配网仍可用：进入配网模式后连设备热点，浏览器打开 <code>http://192.168.4.1/</code> 看到的就是本页；也可以长按 A 键 3 秒进 / 出配网模式。</p>
+<p>链接器顺带回收了那 78 KB 的配网页 HTML 与相关 handler：新固件 <b>2,135,424 B</b>，比 v15 的 2,220,464 B 小 85 KB。</p>
+</div></div>
+<div class="card"><h2>③ 单独刷机（只写 ota_0）</h2><div class="small">
+<pre>python -m esptool --chip esp32s2 -p COM20 -b 115200 --before no_reset --after no_reset write_flash 0x20000 "xiaozhi-统一设置页+卡死修复-20261112.bin"</pre>
+<p>只写 <code>0x20000</code>：收音机 / otadata / nvs / assets 全不动，Wi-Fi 与天气设置不丢。回滚把文件名换回 v15 包的 <code>xiaozhi.bin</code>。沿用上次实测结论：固定 115200、参数用下划线 <code>no_reset</code>，刷完手动拨一次 OFF → ON。</p>
+<p>固件 md5 <code>02cac7a2da64d9fa86104070ed4c267e</code>，<code>esptool image_info</code> 显示 Checksum / Validation Hash 均 valid。<b>尚未上板实测。</b></p>
+</div></div>
+</div>
+<script>
+function pick(s){var o=s.options[s.selectedIndex];if(!o||!o.dataset.lat)return;
+ var p=s.closest('.pane');p.querySelector('[name=lat]').value=o.dataset.lat;
+ p.querySelector('[name=lon]').value=o.dataset.lon;p.querySelector('[name=label]').value=o.dataset.name;}
+var mock=[{ssid:'HomeWiFi_2.4G',rssi:-42},{ssid:'HomeWiFi_5G',rssi:-55},
+ {ssid:'CMCC-8f2a',rssi:-68},{ssid:'Neighbor_2.4G',rssi:-79},{ssid:'AlphaPi-4A2B',rssi:-31}];
+document.querySelectorAll('.aps').forEach(function(box){
+ box.innerHTML='';mock.forEach(function(a){var b=document.createElement('button');
+ b.type='button';b.className='ap';b.textContent=a.ssid+' ('+a.rssi+'dBm)';
+ b.onclick=function(){box.closest('.pane').querySelector('[name=ssid]').value=a.ssid;};
+ box.appendChild(b);});});
+</script></body></html>
