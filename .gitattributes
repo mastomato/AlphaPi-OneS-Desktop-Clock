@@ -1,0 +1,11 @@
+# 固件镜像必须逐字节保留，不做任何换行/过滤转换
+*.bin   binary
+*.png   binary
+
+# 文本文件统一 LF（签出到 Windows 也不转 CRLF，保证 md5 与包内一致）
+*.md    text eol=lf
+*.py    text eol=lf
+*.html  text eol=lf
+*.txt   text eol=lf
+*.cmd   text eol=lf
+*.bat   text eol=lf

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>AlphaPi One S · M2b 日期色版配色预览（160×128）</title>
+<style>
+  :root{--bg:#0b1018;--panel:#141d2b;--line:#26344a;--txt:#dce6f2;--dim:#8fa3bd;--warm:#FFD27A;--cyan:#8FE3F0;--date:#7186A0;}
+  *{box-sizing:border-box}
+  body{margin:0;padding:26px 28px 60px;background:var(--bg);color:var(--txt);font:14px/1.7 "Microsoft YaHei","Segoe UI",sans-serif;}
+  h1{font-size:21px;margin:0 0 6px;font-weight:700}
+  .lead{color:var(--dim);margin:0 0 22px;font-size:13px}
+  h2{font-size:16px;margin:30px 0 12px;padding-left:10px;border-left:3px solid var(--warm)}
+  .row{display:flex;flex-wrap:wrap;gap:16px;margin:0 0 8px}
+  .item{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px 14px}
+  .tag{display:flex;align-items:center;gap:8px;margin-bottom:10px;min-height:20px}
+  .nm{font-size:12px;font-weight:700;color:var(--txt)}
+  .pill{font-size:10px;padding:2px 7px;border-radius:10px;background:#25344a;color:var(--dim)}
+  .pill.hot{background:#4a3a20;color:var(--warm)}
+  .frame{width:320px;height:256px;position:relative;border-radius:8px;overflow:hidden;box-shadow:0 6px 18px #0008}
+  .screen{width:160px;height:128px;position:relative;transform:scale(2);transform-origin:top left}
+  table{border-collapse:collapse;width:100%;margin:10px 0 0;font-size:13px}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:#1b2637;color:var(--dim);font-weight:700}
+  code{background:#1c283a;padding:1px 5px;border-radius:4px;color:var(--cyan);font-family:Consolas,monospace}
+  .sw{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:6px;border:1px solid #ffffff22}
+  .note{background:#172131;border:1px solid var(--line);border-left:3px solid var(--cyan);border-radius:6px;padding:11px 14px;margin:14px 0;color:var(--dim);font-size:13px}
+  pre{background:#101a28;border:1px solid var(--line);border-radius:8px;padding:13px 15px;overflow-x:auto;color:#cfe0f2;font:12px/1.7 Consolas,monospace}
+  ul{margin:8px 0;padding-left:22px}li{margin:5px 0}
+  .ok{color:var(--cyan)}.warm{color:var(--warm)}.dim{color:var(--dim)}
+</style>
+</head>
+<body>
+
+<h1>收音机 M2b · 按键框 + 电台名称用「首页日期色」</h1>
+<p class="lead">基准是已定稿的 M2 淡橙版。这次只把两处亮蓝灰 <code>#93AAC6</code> 换成小智首页日期色 <code>#7186A0</code>，其余色值全部不动。预览为 2× 放大的 160×128 实机布局。</p>
+
+<h2>一、播放页 · 改前 / 改后</h2>
+<div class="row">
+  <div class="item"><div class="tag"><span class="nm">M2 淡橙版（改前）</span><span class="pill">按键 / 电台名 #93AAC6</span></div><div class="frame"><div class="screen" id="old-home"></div></div></div>
+  <div class="item"><div class="tag"><span class="nm">M2b 日期色版（改后）</span><span class="pill hot">按键 / 电台名 #7186A0</span></div><div class="frame"><div class="screen" id="new-home"></div></div></div>
+  <div class="item"><div class="tag"><span class="nm">小智首页 · 日期色参照</span><span class="pill">日期 #7186A0</span></div><div class="frame"><div class="screen" id="ref-xiaozhi"></div></div></div>
+</div>
+
+<h2>二、电台列表 · 改前 / 改后（列表页 4 个提示键共用同一个 MakeKey，会一起变）</h2>
+<div class="row">
+  <div class="item"><div class="tag"><span class="nm">M2 淡橙版（改前）</span></div><div class="frame"><div class="screen" id="old-list"></div></div></div>
+  <div class="item"><div class="tag"><span class="nm">M2b 日期色版（改后）</span></div><div class="frame"><div class="screen" id="new-list"></div></div></div>
+  <div class="item"><div class="tag"><span class="nm">M2b 停播态（STOP / 断网冷青）</span></div><div class="frame"><div class="screen" id="new-stop"></div></div></div>
+</div>
+
+<h2>三、色值对照</h2>
+<table>
+  <tr><th>元素</th><th>M2 淡橙版</th><th>M2b 日期色版</th><th>说明</th></tr>
+  <tr><td>四个按键块 + 列表提示键</td><td><span class="sw" style="background:#93AAC6"></span><code>#93AAC6</code></td><td><span class="sw" style="background:#7186A0"></span><code>#7186A0</code></td><td><b>本次改动</b>，对齐首页日期色</td></tr>
+  <tr><td>电台名称（17px 大字）</td><td><span class="sw" style="background:#93AAC6"></span><code>#93AAC6</code></td><td><span class="sw" style="background:#7186A0"></span><code>#7186A0</code></td><td><b>本次改动</b>，对齐首页日期色</td></tr>
+  <tr><td>频谱低条 / 音量暗格</td><td><span class="sw" style="background:#8A6440"></span><code>#8A6440</code></td><td><span class="sw" style="background:#5C4834"></span><code>#5C4834</code></td><td>槽位让给日期色，改吃细线同款暗暖棕</td></tr>
+  <tr><td>主文字 / 时钟 / 计数 / 整屏 2px 外框</td><td colspan="2"><span class="sw" style="background:#93AAC6"></span><code>#93AAC6</code>（不变）</td><td>只挑出上面两处，不拖暗其余文字</td></tr>
+  <tr><td>焦点（LIVE / 图标 / NET RADIO / 计数）</td><td colspan="2"><span class="sw" style="background:#FFD27A"></span><code>#FFD27A</code>（不变）</td><td>= 小智首页温度 <code>21°C</code> 的 kWarm</td></tr>
+  <tr><td>频谱高条 / 列表选中行 / STOP / 断网</td><td colspan="2"><span class="sw" style="background:#8FE3F0"></span><code>#8FE3F0</code>（不变）</td><td>青色守主视觉与待机态</td></tr>
+  <tr><td>背景 / 按键字</td><td colspan="2"><span class="sw" style="background:#0E1420"></span><code>#0E1420</code>（不变）</td><td>深蓝黑</td></tr>
+  <tr><td>5 条 1px 分隔线</td><td colspan="2"><span class="sw" style="background:#5C4834"></span><code>#5C4834</code>（不变）</td><td>暗暖棕</td></tr>
+</table>
+
+<div class="note">「外框」按四个按键的实心圆角块理解（源码里 <code>MakeKey(): Box(screen, x, 103, 35, 18, kInk, 2)</code>，没有单独描边）。
+整屏那圈 2px 外框也是 <code>kInk</code>，这次<b>保持 #93AAC6 没动</b>；如果也想让它变日期色，再重定向 2 条 <code>l32r</code> 即可。</div>
+
+<h2>四、怎么实现的（零重编译，只改 60 字节）</h2>
+<ul>
+  <li><code>kInk</code> 同时被 19 处引用（主文字、时钟、竖线、音量图标、整屏外框…），直接改会全部拖暗，所以走<b>指令级重定向</b>。</li>
+  <li>把 <code>#7186A0</code> 写进 <code>kBarDim</code> 字面量槽，把 <b>2 条</b> <code>kInk</code> 引用指过去：<code>0x132E9D</code>（MakeKey 按键底）、<code>0x1347F9</code>（g_title 电台名）。</li>
+  <li>原本用到 <code>kBarDim</code> 的 <b>2 条</b>引用（频谱低条 <code>0x132D8B</code>、音量暗格 <code>0x1340E7</code>）改指向 <code>kHair</code> 槽，继续用暗暖棕，避免亮蓝灰细条。</li>
+  <li>连同 M2 原有的 <b>2 条</b>留青重定向（<code>0x132D9D</code> 频谱高条、<code>0x1341B8</code> 选中行），共 <b>6 条 l32r</b> + 6 个颜色常量 + 1 字节 XOR 校验 + 32 字节 SHA256 = 60 字节。</li>
+  <li>电台名只在创建时设一次色，<code>RefreshUi()</code> 只改 x / 宽 / 对齐 / 文本，不会把颜色改回去。</li>
+</ul>
+
+<h2>五、刷机（只写收音机一段，小智 / nvs / otadata / assets 全不动）</h2>
+<pre>python -m esptool --chip esp32s2 -p COM20 -b 115200 --before no_reset --after no_reset ^
+  write_flash 0x310000 "radio-配色统一-M2b日期色版.bin"</pre>
+<ul>
+  <li>参数用<b>下划线</b> <code>no_reset</code>；esptool 4.8.1 不认 <code>no-reset</code>。波特率保持 115200（本机 USB 串口切 460800 / 921600 会失联）。</li>
+  <li>刷完手动拨一次 <b>OFF → ON</b> 正常开机。回滚把文件换成 v15 包的 <code>radio.bin</code>。</li>
+  <li class="ok">已通过 <code>esptool image_info</code>：<code>Checksum: c9 (valid)</code>、<code>Validation Hash … (valid)</code>；反汇编复核 6 条指令落点正确。</li>
+  <li class="dim">尚未上板实测。</li>
+</ul>
+
+<script>
+const BASE={paper:'#0E1420',ink:'#93AAC6'};
+const OLD=Object.assign({},BASE,{keyBg:'#93AAC6',title:'#93AAC6',brand:'#FFD27A',barDim:'#8A6440',hair:'#5C4834',muted:'#8FE3F0',sel:'#8FE3F0',accent:'#8FE3F0'});
+const NEW=Object.assign({},BASE,{keyBg:'#7186A0',title:'#7186A0',brand:'#FFD27A',barDim:'#5C4834',hair:'#5C4834',muted:'#8FE3F0',sel:'#8FE3F0',accent:'#8FE3F0'});
+function css(t){return Object.assign({},t,{keyInk:t.paper,frame:t.ink,selInk:t.paper});}
+function box(x,y,w,h,bg,r){return '<div style="position:absolute;left:'+x+'px;top:'+y+'px;width:'+w+'px;height:'+h+'px;background:'+bg+';border-radius:'+(r||0)+'px"></div>';}
+function txt(x,y,s,c,size,extra){return '<div style="position:absolute;left:'+x+'px;top:'+y+'px;color:'+c+';font-size:'+size+'px;line-height:1.12;font-weight:700;white-space:nowrap;'+(extra||'')+'">'+s+'</div>';}
+const ICON={wifi:'<path d="M1 5.2C4.7 2.2 11.3 2.2 15 5.2l-1.4 1.7C10.5 4.4 5.5 4.4 2.4 6.9L1 5.2zM3.6 8.1c2.6-2.1 6.2-2.1 8.8 0l-1.5 1.7c-1.7-1.3-4.1-1.3-5.8 0L3.6 8.1zM6.2 11c1.1-.8 2.5-.8 3.6 0L8 13l-1.8-2z"/>',
+ pause:'<rect x="2" y="1" width="4" height="14" rx="1"/><rect x="10" y="1" width="4" height="14" rx="1"/>',
+ prev:'<path d="M2 2h2v12H2zM15 2v12L6 8z"/>',next:'<path d="M12 2h2v12h-2zM1 2v12l9-6z"/>',
+ mute:'<path d="M2 6h3l4-4v12l-4-4H2z"/><path d="M11 5l4 6M15 5l-4 6" stroke="currentColor" stroke-width="1.6" fill="none"/>',
+ vol:'<path d="M1 6h3l4-4v12l-4-4H1z"/><path d="M10 5c1.6 1.6 1.6 4.4 0 6M12.4 2.8c3 3 3 7.4 0 10.4" stroke="currentColor" stroke-width="1.3" fill="none"/>',
+ play:'<path d="M3 1.5v13l11-6.5z"/>',up:'<path d="M8 3l6 7H2z"/>',down:'<path d="M8 13L2 6h12z"/>',left:'<path d="M3 8l7-6v12z"/>'};
+function sym(n,c,size,pos){return '<svg viewBox="0 0 16 16" width="'+size+'" height="'+size+'" style="'+pos+'color:'+c+'" fill="currentColor">'+ICON[n]+'</svg>';}
+function key(x,icon,label,t){return '<div style="position:absolute;left:'+x+'px;top:103px;width:35px;height:18px;background:'+t.keyBg+';border-radius:2px;display:flex;align-items:center;justify-content:space-between;padding:0 3px;box-sizing:border-box"><svg viewBox="0 0 16 16" width="9" height="9" style="color:'+t.keyInk+';flex:none" fill="currentColor">'+ICON[icon]+'</svg><span style="color:'+t.keyInk+';font-size:10px;font-weight:700;white-space:nowrap;line-height:1">'+label+'</span></div>';}
+function frame(t){return box(2,2,156,124,t.paper,8).replace('border-radius:8px','border-radius:8px;border:2px solid '+t.frame+';box-sizing:border-box');}
+const BARS=[5,10,13,12,9,6,7,12,15,10,7,5,9,14,16,12,8,5,10,13,9,7,4];
+function homeHTML(t,stopped){
+  let s=box(0,0,160,128,t.paper)+frame(t);
+  [23,60,78,99].forEach(y=>{s+=box(7,y,146,1,t.hair);});
+  s+=sym('wifi',stopped?t.muted:t.ink,14,'left:8px;top:6px;');
+  s+=box(27,6,30,13,stopped?t.muted:t.brand,2)+txt(27,7,stopped?'STOP':'LIVE',t.paper,10,'width:30px;text-align:center');
+  s+=box(59,7,1,12,t.ink)+txt(65,5,'02/22',t.ink,10,"font-family:Consolas,monospace;letter-spacing:.2px");
+  s+=box(103,7,1,12,t.ink)+txt(108,5,'12:38',t.ink,13,"font-family:Consolas,monospace;width:44px;text-align:right");
+  s+='<svg viewBox="0 0 36 30" width="36" height="30" style="position:absolute;left:8px;top:28px;color:'+t.brand+'" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 11L23 1"/><path d="M31 8l4-3"/><path d="M31 14h5"/></svg>';
+  s+=box(8,39,30,18,t.brand,3);
+  for(let r=0;r<4;r++) s+=box(11,43+r*3,11,1,t.paper);
+  s+=box(25,42,10,10,t.paper,5)+box(27,44,6,6,t.brand,4)+box(29,46,2,2,t.paper,2);
+  s+=box(39,36,5,1,t.brand)+box(39,42,6,1,t.brand);
+  s+=txt(47,31,'上海新闻广播',t.title,17);
+  s+=txt(8,62,stopped?'已暂停':'新闻 · 64k',t.ink,11);
+  s+=txt(96,62,'NET RADIO',t.brand,10,"font-family:Consolas,monospace");
+  for(let i=0;i<23;i++){const h=stopped?4:BARS[i];s+=box(8+i*4,97-h,2,h,!stopped&&h>=8?t.accent:t.barDim,0);}
+  s+=box(103,84,1,12,t.hair)+sym('vol',t.ink,12,'left:107px;top:84px;');
+  for(let i=0;i<5;i++) s+=box(123+i*6,94-i*2,4,3+i*2,i<3?t.ink:t.barDim);
+  s+=key(7,'pause','暂停',t)+key(44,'prev','上台',t)+key(81,'next','下台',t)+key(118,'mute','静音',t);
+  return s;
+}
+function listHTML(t){
+  let s=box(0,0,160,128,t.paper)+frame(t);
+  s+=txt(8,5,'电台列表',t.ink,11)+txt(110,5,'02/06',t.brand,10,"font-family:Consolas,monospace");
+  s+=box(7,22,146,1,t.hair);
+  ['中国之声','上海新闻广播','北京新闻广播','广东新闻广播'].forEach((n,i)=>{
+    const y=25+i*18;s+=box(7,y,146,18,i===1?t.sel:t.paper,2)+txt(11,y+3,(i+1)+'  '+n,i===1?t.selInk:t.ink,11);
+  });
+  s+=key(7,'play','播放',t)+key(44,'up','上台',t)+key(81,'down','下台',t)+key(118,'left','返回',t);
+  return s;
+}
+function xiaozhiHTML(){
+  let s=box(0,0,160,128,'#0E1420');
+  s+=txt(6,5,'AlphaPi','#7186A0',9)+txt(128,5,'92%','#7186A0',9)+box(0,21,160,1,'#1E2A40');
+  s+=txt(8,23,'11月12日 周四','#7186A0',11);
+  s+=txt(8,45,'10:36','#8FE3F0',32,"font-family:Consolas,monospace;font-weight:700;letter-spacing:-1px");
+  s+=txt(8,79,'福州市','#7186A0',11)+box(104,26,1,68,'#1E2A40');
+  s+=txt(106,64,'21°C','#FFD27A',16,"font-family:Consolas,monospace");
+  s+=txt(106,80,'多云','#E6EEF7',12)+box(8,101,146,1,'#1E2A40');
+  [['今','21°','☀'],['明','23°','☁'],['后','19°','☂']].forEach((f,i)=>{
+    const x=8+i*50;s+=txt(x,105,f[0],'#7186A0',11)+txt(x+14,106,f[1],'#B8C4D6',11,"font-family:Consolas,monospace");
+  });
+  return s;
+}
+const o=css(OLD),n=css(NEW);
+document.getElementById('old-home').innerHTML=homeHTML(o,false);
+document.getElementById('new-home').innerHTML=homeHTML(n,false);
+document.getElementById('old-list').innerHTML=listHTML(o);
+document.getElementById('new-list').innerHTML=listHTML(n);
+document.getElementById('new-stop').innerHTML=homeHTML(n,true);
+document.getElementById('ref-xiaozhi').innerHTML=xiaozhiHTML();
+</script>
+</body>
+</html>
