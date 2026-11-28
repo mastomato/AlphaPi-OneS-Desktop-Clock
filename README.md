@@ -68,6 +68,8 @@
   配网一次共享、WiFi 历史记录与会话失败恢复；原镜像留作 `extras/xiaozhi-v16原版回滚.bin`。
   已刷过 v16 的设备**只需单刷 `0x20000` 的 `xiaozhi.bin`**，其余五段不用动。
 - 想快速上手，直接看 [firmware/v16/README.md](firmware/v16/README.md) 的「刷机前必做」和「六段文件与地址」。
+- **`source/`** — 小智槽完整源码（ESP-IDF 6.0.2），含板级移植、定制的配网共享组件与已定稿 sdkconfig；
+  定制点和编译步骤见 [source/README.alphapi.md](source/README.alphapi.md)。收音机槽无源码（二进制补丁固件）。
 
 ### v16 是什么
 

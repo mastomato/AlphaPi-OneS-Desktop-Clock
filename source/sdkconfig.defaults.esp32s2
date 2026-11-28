@@ -1,0 +1,70 @@
+# AlphaPi One S (ESP32-S2R2, 8MB flash, 2MB embedded QUAD PSRAM) —— 目标级默认值
+# ESP-IDF 会自动加载 sdkconfig.defaults.<IDF_TARGET>，所以文件名必须是 .esp32s2
+# 上游 v2.4.2 只有 esp32/c3/c5/c6/p4/s3/s31 这几份，缺 S2 —— 本文件即为补上的那一份。
+#
+# 逐条依据：
+#   * 8MB flash + partitions/v2/8m.csv ：与官方包固件的分区布局一致（手册 §4.1/§4.2）
+#   * QUAD PSRAM 80MHz            ：S2 没有 octal PSRAM，片内 2MB 是 quad（手册 §1.1）
+#   * UNICORE                     ：S2 是单核，上游多处 PinnedToCore 需要核一下（见 patches/01）
+#   * WN9S 唤醒词                  ：官方固件的唤醒词模型是 wakenet9（固件内 wakenet9_quantized.c）
+#   * BluFi 关掉                   ：S2 没有蓝牙，配网只能走热点 AP（固件内 78__esp-wifi-connect）
+
+CONFIG_ESPTOOLPY_FLASHSIZE_8MB=y
+CONFIG_PARTITION_TABLE_CUSTOM=y
+CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions/v2/8m.csv"
+CONFIG_PARTITION_TABLE_OFFSET=0x8000
+
+CONFIG_SPIRAM=y
+CONFIG_SPIRAM_MODE_QUAD=y
+CONFIG_SPIRAM_SPEED_80M=y
+CONFIG_SPIRAM_USE_MALLOC=y
+CONFIG_SPIRAM_TRY_ALLOCATE_WIFI_LWIP=y
+# 上游 esp32s3/p4/s31 三份 defaults 全都有这一条，补写 S2 时同样漏了：
+# IDF 默认 16384 会把所有 <=16KB 的 malloc() 强制留在内部 RAM，2MB PSRAM 空转。
+# 实测后果：加了收音机/天气/时钟页后，内部最大连续块只剩 3KB，
+# EspSsl/EspTcp 连上后创建 4096 栈的接收任务失败 -> ENOMEM(12)
+# -> "Connection failed (connect_failed, native=12) [H1880/3]"，且永不恢复。
+# 改成 1024 后，>1KB 的普通分配走 PSRAM，内部 RAM 留给 DMA/Wi-Fi/任务栈。
+# 注意不要照抄上游的 MALLOC_RESERVE_INTERNAL=102400：S2 内部 SRAM 比 s3/p4 小得多，
+# 预留 100KB 反而会饿死普通分配，保持 IDF 默认的 32768。
+CONFIG_SPIRAM_MALLOC_ALWAYSINTERNAL=16384
+
+CONFIG_FREERTOS_UNICORE=y
+CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ_240=y
+
+# 语音：与官方包同路线（lite 音频引擎 + EspWakeWord + WakeNet9）
+CONFIG_SR_WN_WN9S_NIHAOXIAOZHI=y
+CONFIG_USE_WAKE_WORD_DETECT=y
+
+# 配网：S2 无蓝牙（BluFi 不可用）
+CONFIG_USE_HOTSPOT_WIFI_PROVISIONING=y
+CONFIG_USE_ESP_BLUFI_WIFI_PROVISIONING=n
+
+# 内存吃紧，沿用 C3 那一档的省内存设置（对齐 sdkconfig.defaults.esp32c3 的做法）
+CONFIG_ESP_WIFI_STATIC_RX_BUFFER_NUM=3
+CONFIG_ESP_WIFI_DYNAMIC_RX_BUFFER_NUM=6
+CONFIG_ESP_WIFI_RX_BA_WIN=3
+CONFIG_LWIP_TCPIP_RECVMBOX_SIZE=16
+CONFIG_MBEDTLS_DYNAMIC_FREE_CONFIG_DATA=y
+CONFIG_ESP_WIFI_ENABLE_WPA3_SAE=n
+CONFIG_FREERTOS_IDLE_TASK_STACKSIZE=768
+CONFIG_LWIP_IPV6=n
+
+# The USB port on this board is the ESP32-S2 native USB (see dev manual: "native USB CDC"),
+# while UART0 is not wired out. Logs are therefore only visible when the console is routed
+# to USB CDC - on UART0 nothing can ever be read (measured: 0 bytes at every baud rate).
+CONFIG_ESP_CONSOLE_USB_CDC=y
+CONFIG_TINYUSB_CDC_ENABLED=y
+# Board selection: plain 'idf.py build' only reads sdkconfig.defaults*;
+# config.json sdkconfig_append is consumed by the release matrix, not by idf.py.
+CONFIG_BOARD_TYPE_ALPHAPI_ONE_S=y
+
+# 内部 RAM 吃紧：本板只剩 8~15 KB 内部堆，而 mbedTLS 默认（INTERNAL_MEM_ALLOC）
+# 把 TLS 收发缓冲全部分配在内部 RAM。握手时抢不到连续块就是**确定性**失败，
+# 表现为 TLS handshake failed 且重试多少次都不会好（调小 IN_CONTENT_LEN 只是
+# 把阈值压低，治不了根）。把 mbedTLS 整体挪到 2MB PSRAM：
+# 上游 esp32s3 / p4 / s31 的 defaults 都有这一条，S2 这份是补写的，之前漏了。
+CONFIG_MBEDTLS_EXTERNAL_MEM_ALLOC=y
+# 有了 PSRAM 就无需再压缩入向分片，恢复 IDF 默认 16384。
+CONFIG_MBEDTLS_SSL_IN_CONTENT_LEN=16384
+CONFIG_LV_DRAW_LAYER_SIMPLE_BUF_SIZE=24576
